@@ -1,0 +1,28 @@
+pipeline:
+  docker:
+    image: plugins/docker
+    repo: registry.tstllc.net/llisk/alpine-prometheus
+    username: ${REPO_USERNAME}
+    password: ${REPO_PASSWORD}
+    email: ${REPO_EMAILADDR}
+    registry: registry.tstllc.net
+    force_tag: true
+
+publish:
+  docker:
+    repo: registry.tstllc.net/llisk/alpine-prometheus
+    tag:
+      - latest
+    when:
+      branch:
+        include: [ master, release/* ]
+
+publish:
+  docker:
+    repo: registry.tstllc.net/llisk/alpine-prometheus
+    tag:
+      - ${DRONE_BRANCH}-latest
+      - ${DRONE_BRANCH}.build-${DRONE_BUILD_NUMBER}
+    when:
+      branch:
+        exclude: [ master ]
