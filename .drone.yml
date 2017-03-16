@@ -7,6 +7,7 @@ pipeline:
     email: ${REPO_EMAILADDR}
     registry: registry.tstllc.net
     force_tag: true
+publish:
   docker:
     repo: registry.tstllc.net/llisk/alpine-prometheus
     tag:
@@ -14,6 +15,7 @@ pipeline:
     when:
       branch:
         include: [ master, release/* ]
+publish:
   docker:
     repo: registry.tstllc.net/llisk/alpine-prometheus
     tag:
